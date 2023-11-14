@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="index.js"></script>
+    <link rel="shortcut icon" href="./LOGO.jpg" type="image/x-icon">
+    <title>Reservaciones</title>
+</head>
+<script type="module">
+
+    if (window.location.pathname == "/") {
+        document.getElementById('home').style = "color: #0b3469"
+    } else {
+        document.getElementById('reserva').style = "color: #0b3469"
+    }
+</script>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <img src="./LOGO.jpg" alt="">
+                <li><a id="home" href="/">Inicio</a></li>
+                <li><a id="reserva" href="/reservation">Reservaciones</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Lista de Reservaciones</h1>
+    <hr>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th id="nombre">Solicitante</th>
+                <th id="area">Area</th>
+                <th id="sala">Sala</th>
+                <th id="fecha">Fecha</th>
+                <th id="hora_inicio">Hora Inicio</th>
+                <th id="hora_fin">Hora Fin</th>
+            </tr>
+        </thead>
+        <tbody id="content">            
+        </tbody>
+    </table>
+    <div id="datos" data-array="<%= data %>"></div>
+</body>
+</html>

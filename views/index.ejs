@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="shortcut icon" href="./LOGO.jpg" type="image/x-icon">
+    <title>Incio</title>
+</head>
+<script type="module">
+
+    if (window.location.pathname == "/") {
+        document.getElementById('home').style = "color: #0b3469"
+    } else {
+        document.getElementById('reserva').style = "color: #0b3469"
+    }
+
+    var msg = document.getElementById("msg").getAttribute("data-array")
+    const json = document.getElementById("json").getAttribute("data-json")
+
+    if (msg != "") {
+        alert(msg)
+        sessionStorage.setItem("data", json)
+        console.log(JSON.parse(sessionStorage.getItem("data")))
+        window.location.href = "/"
+    }
+
+    var data = JSON.parse(sessionStorage.getItem("data"))
+    if (data.nombre != null) {
+        document.getElementById("nombre").value = data.nombre
+        document.getElementById("sala").value = data.sala
+        document.getElementById("fecha").value = data.fecha
+        document.getElementById("area").value = data.area
+        document.getElementById("hora_inicio").value = data.hora_inicio
+        document.getElementById("hora_fin").value = data.hora_fin
+    }
+
+</script>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <img src="./LOGO.jpg" alt="">
+                <li><a id="home" href="/">Inicio</a></li>
+                <li><a id="reserva" href="/reservation">Reservaciones</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Reservar Sala De Juntas</h1>
+    <hr>
+    <hr>
+    <section class="content">
+        <form action="/sendinfo" method="post">
+            <label for="nombre"><b>Nombre del solicitante</b></label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre del solicitante" required required>
+            <label for="sala"><b>Sala de juntas</b></label>
+            <select name="sala" id="sala" required>
+                <option value="">-- Selecciona la sala de justas a reservar --</option>
+                <option value="Sala Subgerencia Administrativa">Sala Subgerencia Administrativa</option>
+                <option value="Sala Oficina Control Interno">Sala Oficina Control Interno</option>
+                <option value="Sala Subgerencia Comercial">Sala Subgerencia Comercial</option>
+                <option value="Sala Subgerencia Financiera">Sala Subgerencia Financiera</option>
+                <option value="Sala Subgerencia Técnica">Sala Subgerencia Técnica</option>
+            </select>
+            <label for="area"><b>Area el solicitante</b></label>
+            <select name="area" id="area" required>
+                <option value="">-- Seleccione el area a la que pertenece -- </option>
+                <option value="Subgerencia Administrativa">Subgerencia Administrativa</option>
+                <option value="Oficina Control Interno">Oficina Control Interno</option>
+                <option value="Oficina Control Interno Disciplinario">Oficina Control Interno Disciplinario</option>
+                <option value="Subgerencia Comercial">Subgerencia Comercial</option>
+                <option value="Subgerencia Talento Humano">Subgerencia Talento Humano</option>
+                <option value="Subgerencia Financiera">Subgerencia Financiera</option>
+                <option value="Oficina Asesora de Juridica y Contratación">Oficina Asesora de Juridica Y Contratación</option>
+                <option value="Subgerencia Técnica">Subgerencia Técnica</option>
+                <option value="Oficina Asesora De Planeación">Oficina Asesora De Planeación</option>
+                <option value="Oficina Asesora De Innovación y Desarrollo">Oficina Asesora De Innovación y Desarrollo</option>
+
+            </select>
+            <label for="fecha"><b>Fecha de reservación</b></label>
+            <input type="date" name="fecha" id="fecha" required>
+            <label for="hora_inicio"><b>Hora incio</b></label>
+            <input type="time" name="hora_inicio" id="hora_inicio" required>
+            <label for="hora_fin"><b>Hora fin</b></label>
+            <input type="time" name="hora_fin" id="hora_fin" required>
+            <button type="submit">enviar</button>
+        </form>
+    </section>
+    <div id="msg" data-array="<%= res %>"></div>
+    <div id="json" data-json="<%= JSON.stringify(json) %>"></div>
+</body>
+</html>
