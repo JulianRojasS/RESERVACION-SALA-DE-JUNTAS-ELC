@@ -93,6 +93,7 @@ sort_by_hora_in.addEventListener("click", (e) => {
     push_data(peticiones)
     console.log(peticiones)
 })
+
 sort_by_hora_fin.addEventListener("click", (e) => {
     peticiones.sort((a, b) => {
         if (a.hora_fin > b.hora_fin) {
