@@ -12,7 +12,7 @@ const app = express()
 const __filename = fileURLToPath(import.meta.url)
 export const dirname = path.dirname(__filename)
 /// PUERTO QUE MANEJA EL SERVIDOR DE MANERA LOCAL
-const port = 3001
+const port = 8080
 
 /// TIPO DE EXTENSIÓN DE ARCHIVO PARA MOTOR DE VISTA
 /// SE REMPLAZA HTML POR EJS PARA MANEJAR LOS PARAMETROS PASADOS EN 'routes.js'
