@@ -1,6 +1,5 @@
 var lista = document.getElementById("datos").getAttribute("data-array")
 var list_by_json = JSON.parse(lista)
-console.log(list_by_json)
 var peticiones = []
 var tbody = document.getElementById("content")
 
@@ -32,7 +31,6 @@ sort_by_name.addEventListener("click", (e) => {
     })
     tbody.innerHTML = ""
     push_data(peticiones)
-    console.log(peticiones)
 })
 sort_by_area.addEventListener("click", (e) => {
     peticiones.sort((a, b) => {
@@ -46,7 +44,6 @@ sort_by_area.addEventListener("click", (e) => {
     })
     tbody.innerHTML = ""
     push_data(peticiones)
-    console.log(peticiones)
 })
 sort_by_sala.addEventListener("click", (e) => {
     peticiones.sort((a, b) => {
@@ -61,7 +58,6 @@ sort_by_sala.addEventListener("click", (e) => {
     
     tbody.innerHTML = ""
     push_data(peticiones)
-    console.log(peticiones)
 })
 sort_by_fecha.addEventListener("click", (e) => {
     peticiones.sort((a, b) => {
@@ -76,7 +72,6 @@ sort_by_fecha.addEventListener("click", (e) => {
     
     tbody.innerHTML = ""
     push_data(peticiones)
-    console.log(peticiones)
 })
 sort_by_hora_in.addEventListener("click", (e) => {
     peticiones.sort((a, b) => {
@@ -91,7 +86,6 @@ sort_by_hora_in.addEventListener("click", (e) => {
     
     tbody.innerHTML = ""
     push_data(peticiones)
-    console.log(peticiones)
 })
 
 sort_by_hora_fin.addEventListener("click", (e) => {
@@ -107,7 +101,6 @@ sort_by_hora_fin.addEventListener("click", (e) => {
     
     tbody.innerHTML = ""
     push_data(peticiones)
-    console.log(peticiones)
 })
 
 function push_data(peticiones) {
