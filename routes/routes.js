@@ -17,6 +17,14 @@ router.get("/", (req, res) => {
   res.render("index", data);
 });
 
+///RUTA PARA CERRA SERVIDOR
+router.get('/detener',async (req, res) => {
+  await write_log("El servidor se cerro - " + new Date() + "\n")
+  await server.close( async () => {
+	await process.exit(0)
+  })
+ });
+
 /// LISTADO DE RESERVACIONES
 router.get("/reservation", async (req, res) => {
     try {
