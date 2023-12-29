@@ -12,7 +12,7 @@ const app = express()
 const __filename = fileURLToPath(import.meta.url)
 export const dirname = path.dirname(__filename)
 /// PUERTO QUE MANEJA EL SERVIDOR DE MANERA LOCAL
-const port = 3000
+const port = 80
 
 /// TIPO DE EXTENSIÓN DE ARCHIVO PARA MOTOR DE VISTA
 /// SE REMPLAZA HTML POR EJS PARA MANEJAR LOS PARAMETROS PASADOS EN 'routes.js'
@@ -22,11 +22,17 @@ app.set("trust proxy", true)
 
 /// SE DEFINE EL USO DE ROUTER
 app.use("/", router)
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '10.0.23.51');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 /// SE DEFINE EL USO DE ARCHIVOS ESTATICOS (CSS, IMAGENES, ETC)
 app.use(express.static(path.join(dirname, "views", "public")))
 
 /// SE CARGA EL SERVIDOR
-const server = app.listen(port, "10.0.100.81", () => {
+const server = app.listen(port, "10.0.23.51", () => {
     console.log(`Server run in port ${port}`)
     /// SE ESCRIBE UN MANSAJE EN 'log.txt'
     write_log("El servidor se inicio - " + new Date() + "\n")
@@ -44,17 +50,8 @@ const tittle = () => {
     })
 }
 
-/// ESTA FUNCION DEBERIA CARGA UN MENSAJE PARA CUANDO EL SERVIODR SE DETIENE
-/// NO FUNCIONA
-process.on('SIGINT', () => {
-    server.close(() => {
-        console.log('Servidor detenido.');
-        process.exit(0);
-    });
-});
-
 export const write_log = (msj) => {
-    fs.appendFile('log.txt' ,msj ,(err) => {
+    fs.appendFileSync('log.txt' ,msj ,(err) => {
         if(err) {
             console.log(err)
         }

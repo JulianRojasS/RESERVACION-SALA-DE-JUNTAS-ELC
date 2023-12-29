@@ -1,19 +1,21 @@
 ## EJECUTAR SERVIDOR:
 
-1. Se abre un cmd con la ruta a esta carpeta
-2. Ejecutar:
+1. Ejecutar:
 
    ```bash
+   sudo su -
+   cd /home/elcadmin/rj
    npm run dev
    ```
 
 ---
 
 ## CERRAR SERVIDOR:
-
-1. Se abre un cmd con la ruta a esta carpeta
-2. Combinación de teclas 'CTRL + C'
-
+   ```bash	
+   sudo su -
+   cd /home/elcadmin/rj
+   npm run stop
+   ```
 ---
 
 ## PROGRAMAS UTILIZADOS:

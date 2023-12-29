@@ -6,12 +6,14 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node modules.js"
+    "dev": "node modules.js",
+    "stop": "curl http://10.0.23.51:80/detener"
   },
   "author": "julian rojas",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.9",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mysql2": "^3.6.5"
   }
 }

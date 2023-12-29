@@ -21,23 +21,22 @@
     }
 
     var msg = document.getElementById("msg").getAttribute("data-array")
-    const json = document.getElementById("json").getAttribute("data-json")
+    var json = document.getElementById("json").getAttribute("data-json")
 
     if (msg != "") {
-        alert(msg)
         sessionStorage.setItem("data", json)
-        console.log(JSON.parse(sessionStorage.getItem("data")))
+        alert(msg)
         window.location.href = "/"
     }
 
     var data = JSON.parse(sessionStorage.getItem("data"))
-    if (data.nombre != null) {
-        document.getElementById("nombre").value = data.nombre
-        document.getElementById("sala").value = data.sala
-        document.getElementById("fecha").value = data.fecha
-        document.getElementById("area").value = data.area
-        document.getElementById("hora_inicio").value = data.hora_inicio
-        document.getElementById("hora_fin").value = data.hora_fin
+    if (data != null) {
+        document.getElementById("nombre").value = data.Solicitante
+        document.getElementById("sala").value = data.Sala
+        document.getElementById("fecha").value = data.Fecha
+        document.getElementById("area").value = data.Area
+        document.getElementById("hora_inicio").value = data.HoraInicio
+        document.getElementById("hora_fin").value = data.HoraFin
     }
 
 </script>
