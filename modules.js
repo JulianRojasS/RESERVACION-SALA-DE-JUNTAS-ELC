@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(dirname, "views", "public")))
 
 /// SE CARGA EL SERVIDOR
-const server = app.listen(port, "10.0.23.51", () => {
+const server = app.listen(port, () => {
     console.log(`Server run in port ${port}`)
     /// SE ESCRIBE UN MANSAJE EN 'log.txt'
     write_log("El servidor se inicio - " + new Date() + "\n")

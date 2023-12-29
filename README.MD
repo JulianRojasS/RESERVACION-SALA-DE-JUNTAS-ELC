@@ -1,21 +1,23 @@
 ## EJECUTAR SERVIDOR:
 
-1. Ejecutar:
+Ejecutar:
 
-   ```bash
-   sudo su -
-   cd /home/elcadmin/rj
-   npm run dev
-   ```
+```bash
+sudo su -
+cd /home/elcadmin/rj
+npm run dev
+```
 
 ---
 
 ## CERRAR SERVIDOR:
-   ```bash	
+
+```bash
    sudo su -
    cd /home/elcadmin/rj
    npm run stop
-   ```
+```
+
 ---
 
 ## PROGRAMAS UTILIZADOS:
