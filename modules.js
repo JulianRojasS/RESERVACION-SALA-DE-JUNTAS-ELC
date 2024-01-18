@@ -20,6 +20,7 @@ app.set("view engine", "ejs")
 app.set("views", path.join(dirname,"views"))
 app.set("trust proxy", true)
 
+
 /// SE DEFINE EL USO DE ROUTER
 app.use("/", router)
 app.use((req, res, next) => {
@@ -32,7 +33,7 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(dirname, "views", "public")))
 
 /// SE CARGA EL SERVIDOR
-const server = app.listen(port, "10.0.23.51" () => {
+const server = app.listen(port, "10.0.23.51", () => {
     console.log(`Server run in port ${port}`)
     /// SE ESCRIBE UN MANSAJE EN 'log.txt'
     write_log("El servidor se inicio - " + new Date() + "\n")

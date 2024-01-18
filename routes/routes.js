@@ -52,27 +52,26 @@ router.post("/sendinfo", (req, res) => {
   }
 
   /// ESTE ES PARA AGREGAR '0' A LAS FECHAS QUE ARROJA EL FORMULARIO
-  if (parseInt(new Date().getDate()) <= 9) {
-    dia_Act = `${new Date().getFullYear()}-${new Date().getMonth()+1}-0${new Date().getDate()}`.toString()
+  if (parseInt(new Date().getDate()) <= 9 && parseInt(new Date().getMonth()+1) <= 9) {
+    dia_Act = `${new Date().getFullYear()}-0${new Date().getMonth()+1}-0${new Date().getDate()}`.toString()
   } else if (parseInt(new Date().getMonth()+1) <= 9) {
     dia_Act = `${new Date().getFullYear()}-0${new Date().getMonth()+1}-${new Date().getDate()}`.toString()
-  } else if (parseInt(new Date().getDate()) <= 9 && parseInt(new Date().getMonth()+1) <= 9) {
-    dia_Act = `${new Date().getFullYear()}-0${new Date().getMonth()+1}-0${new Date().getDate()}`.toString()
+  } else if (parseInt(new Date().getDate()) <= 9) {
+    dia_Act = `${new Date().getFullYear()}-${new Date().getMonth()+1}-0${new Date().getDate()}`.toString()
   } else {
     dia_Act = `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`.toString()
   }
-
+ 
   /// ESTE ES PARA AGREGAR '0' A LAS HORAS QUE ARROJA EL FORMULARIO
-  if (parseInt(new Date().getHours()) <= 9) {
-    hora_Act = `0${new Date().getHours()}:${new Date().getMinutes()}`
+  if (parseInt(new Date().getHours()) <= 9 && parseInt(new Date().getMinutes()) <= 9) {
+    hora_Act = `0${new Date().getHours()}:0${new Date().getMinutes()}`
   } else if (parseInt(new Date().getMinutes()) <= 9) {
     hora_Act = `${new Date().getHours()}:0${new Date().getMinutes()}`
-  } else if (parseInt(new Date().getHours()) <= 9 && parseInt(new Date().getMinutes()) <= 9) {
-    hora_Act = `0${new Date().getHours()}:0${new Date().getMinutes()}`
+  } else if (parseInt(new Date().getHours()) <= 9) {
+    hora_Act = `0${new Date().getHours()}:${new Date().getMinutes()}`
   } else {
     hora_Act = `${new Date().getHours()}:${new Date().getMinutes()}`
   }
-
   /// VALIDACIÓN PARA LA DISPONIBILIDAD DE LA SALA DE JUNTAS EN TIEMPO Y EN RESERVA
   /// LOS RES.RENDER SON MENSAJES DE ERROR DE MALA SELECCION DE TIEMPOS QUE SE ENVIAN AL USUARIO FINAL
   if (json.Fecha < dia_Act) {
@@ -120,7 +119,6 @@ const calculo_horas = async (json, res, req) => {
         }
 
         if (solicitudes_dia.length == 0) {
-          console.log("por que la lista de solicitudes es de 0")
           /// SI NO HAY NINGUNA RESERVACIÓN EN ESA FECHA SE AGREGA DIRECTAMENTE LA RESERVACION
           try {
             Insertar(json)
@@ -139,17 +137,23 @@ const calculo_horas = async (json, res, req) => {
         
         } else {
           var i = 0
+	  var nombre_solicitante_ocupado = ""
           for (var s = 0; s < solicitudes_dia.length; s++) {
             const tiempo_inicio_solicitud = solicitudes_dia[s].HoraInicio
             const tiempo_fin_solicitud = solicitudes_dia[s].HoraFin
+	    console.log(json.HoraInicio + " | " + tiempo_inicio_solicitud)
+            console.log(json.HoraFin + " | " + tiempo_fin_solicitud + "\n")
             /// SI HAY MAS RESERVACIONES EN ESE DIA SE HACE UNA VALIDACIÓN DE DISPONIBILIDAD EN LOS TIEMPOS
-            if (json.HoraInicio >= tiempo_inicio_solicitud && json.HoraInicio <= tiempo_fin_solicitud || json.HoraFin >= tiempo_inicio_solicitud && json.HoraFin <= tiempo_fin_solicitud) {
+            if (json.HoraInicio >= tiempo_inicio_solicitud && json.HoraInicio <= tiempo_fin_solicitud || json.HoraFin >= tiempo_inicio_solicitud && json.HoraFin <= tiempo_fin_solicitud ) {
               i--
-            } else {
+	      nombre_solicitante_ocupado = solicitudes_dia[s].Solicitante
+            } else if (tiempo_inicio_solicitud >= json.HoraInicio && tiempo_inicio_solicitud <= json.HoraFin || tiempo_fin_solicitud >= json.HoraInicio && tiempo_fin_solicitud <= json.HoraFin) {
+	      i--
+	      nombre_solicitante_ocupado = solicitudes_dia[s].Solicitante
+	    } else {
               i++
             }
-          }
-        
+          }        
           if (i == solicitudes_dia.length) {
             try {
               Insertar(json)
@@ -167,7 +171,7 @@ const calculo_horas = async (json, res, req) => {
             }
           } else {
             /// SI NO HAY, SE GENERA EL MENSAJE DE ERROR POR FALTA DE DISPONIBILIDAD
-            res.render('index', {res: `El rango de tiempo ${json.HoraInicio}:${json.HoraFin} ya esta reservador por ${solicitudes_dia[0].Solicitante}`, json: json})
+            res.render('index', {res: `La sala de jutnas  ya esta reservador por ${nombre_solicitante_ocupado}`, json: json})
           }
         }
 

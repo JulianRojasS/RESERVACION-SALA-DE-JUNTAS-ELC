@@ -21,9 +21,9 @@ const sort_by_hora_fin = document.getElementById("hora_fin")
 
 sort_by_name.addEventListener("click", (e) => {
     peticiones.sort((a, b) => {
-        if (a.solicitante > b.solicitante) {
+        if (a.Solicitante > b.Solicitante) {
             return 1;
-        } else if (a.solicitante < b.solicitante) {
+        } else if (a.Solicitante < b.Solicitante) {
             return -1;
         } else {
             return 0;
@@ -34,9 +34,9 @@ sort_by_name.addEventListener("click", (e) => {
 })
 sort_by_area.addEventListener("click", (e) => {
     peticiones.sort((a, b) => {
-        if (a.area > b.area) {
+        if (a.Area > b.Area) {
             return 1;
-        } else if (a.area < b.area) {
+        } else if (a.Area < b.Area) {
             return -1;
         } else {
             return 0;
@@ -47,9 +47,9 @@ sort_by_area.addEventListener("click", (e) => {
 })
 sort_by_sala.addEventListener("click", (e) => {
     peticiones.sort((a, b) => {
-        if (a.sala > b.sala) {
+        if (a.Sala > b.Sala) {
             return 1;
-        } else if (a.sala < b.sala) {
+        } else if (a.Sala < b.Sala) {
             return -1;
         } else {
             return 0;
@@ -61,9 +61,9 @@ sort_by_sala.addEventListener("click", (e) => {
 })
 sort_by_fecha.addEventListener("click", (e) => {
     peticiones.sort((a, b) => {
-        if (a.fecha > b.fecha) {
+        if (a.Fecha >  b.Fecha) {
             return 1;
-        } else if (a.fecha < b.fecha) {
+        } else if (a.Fecha < b.Fecha) {
             return -1;
         } else {
             return 0;
@@ -75,9 +75,9 @@ sort_by_fecha.addEventListener("click", (e) => {
 })
 sort_by_hora_in.addEventListener("click", (e) => {
     peticiones.sort((a, b) => {
-        if (a.hora_inicio > b.hora_inicio) {
+        if (a.HoraInicio > b.HoraInicio) {
             return 1;
-        } else if (a.hora_inicio < b.hora_inicio) {
+        } else if (a.HoraInicio < b.HoraInicio) {
             return -1;
         } else {
             return 0;
@@ -90,9 +90,9 @@ sort_by_hora_in.addEventListener("click", (e) => {
 
 sort_by_hora_fin.addEventListener("click", (e) => {
     peticiones.sort((a, b) => {
-        if (a.hora_fin > b.hora_fin) {
+        if (a.HoraFin > b.HoraFin) {
             return 1;
-        } else if (a.hora_fin < b.hora_fin) {
+        } else if (a.HoraFin < b.HoraFin) {
             return -1;
         } else {
             return 0;
